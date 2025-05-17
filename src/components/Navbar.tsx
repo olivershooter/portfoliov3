@@ -1,74 +1,44 @@
-import { Link, useRouter } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useState } from "react";
+import logo from "/OS_logo.svg";
+
+const links = [
+	{ link: "/about", label: "Features" },
+	{ link: "/pricing", label: "Pricing" },
+	{ link: "/learn", label: "Learn" },
+	{ link: "/community", label: "Community" },
+];
 
 export const Navbar = () => {
-  const router = useRouter();
-  const links = [
-    { link: "/projects", label: "Projects" },
-    { link: "/skills", label: "Skills" },
-    { link: "/about", label: "About" },
-  ];
+	const [active, setActive] = useState(links[0].link);
 
-  const scrollTo = (hash: string) => {
-    const id = hash.replace("#", "");
+	const items = links.map((link) => (
+		<a
+			key={link.label}
+			href={link.link}
+			className="px-2.5 py-1.5 text-sm sm:text-md font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:bg-gray-100 rounded-full data-[active]:bg-blue-600 data-[active]:text-white"
+			data-active={active === link.link || undefined}
+			onClick={(event) => {
+				event.preventDefault();
+				setActive(link.link);
+			}}
+		>
+			{link.label}
+		</a>
+	));
 
-    // First try immediately
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-      window.history.pushState(null, "", hash);
-      return;
-    }
+	return (
+		<div className="sticky top-4 z-50 w-full flex justify-center">
+			<header className="w-9/12 sm:max-w-xl bg-gray-100 backdrop-blur-sm rounded-full shadow-slate-400 shadow-md border border-gray-200 py-1.5">
+				<div className="h-10 sm:h-14 flex sm:justify-between justify-center items-center px-2 sm:px-4">
+					<div className="hidden sm:flex items-center gap-1 p-1 rounded-full hover:bg-gray-100">
+						<img src={logo} alt="OS_logo" className="w-8 h-6 sm:w-12 sm:h-10" />
+					</div>
 
-    // If not found, try again after a short delay (for Firefox)
-    const retry = () => {
-      const delayedElement = document.getElementById(id);
-      if (delayedElement) {
-        delayedElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-        window.history.pushState(null, "", hash);
-      }
-    };
-
-    // Try after 100ms and 300ms to handle Firefox timing issues
-    setTimeout(retry, 100);
-    setTimeout(retry, 300);
-  };
-
-  const handleNavClick = (e: React.MouseEvent, path: string) => {
-    e.preventDefault();
-    if (path.startsWith("/#")) {
-      scrollTo(path);
-    } else {
-      router.navigate({ to: path });
-    }
-  };
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between items-center w-full py-4">
-        <Link to="/">
-          <img src="/26.png" width="50rem" height="50rem" />
-        </Link>
-
-        <div className="flex gap-4">
-          {links.map((link) => (
-            <Link
-              key={link.label}
-              to={link.link}
-              className="block leading-6 px-4 py-2 rounded-sm no-underline text-amber-800 font-bold hover:text-amber-600 transition-colors"
-              onClick={(e) => handleNavClick(e, link.link)}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+					<div className="flex items-center gap-1 overflow-x-auto bg-gray-100/80 rounded-full justify-center sm:justify-start">
+						{items}
+					</div>
+				</div>
+			</header>
+		</div>
+	);
 };
