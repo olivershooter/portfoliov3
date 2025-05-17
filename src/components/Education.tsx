@@ -3,32 +3,32 @@ import TimelineItem from "./Timeline";
 
 const Education = () => {
 	const Birmingham = (
-		<ul className="list-disc ml-8">
-			<li>
-				<strong>Graduate coursework:</strong>
-			</li>
-			<li>Artificial Intelligence & Machine Learning</li>
-			<li>Data Structures & Algorithms</li>
-			<li>Database Systems</li>
-			<li>Full Stack Development</li>
-			<li>Object-Oriented Programming</li>
-			<li>Software Engineering Principles</li>
-			<li>System Architecture Design</li>
-		</ul>
+		<>
+			<strong>Graduate coursework:</strong>
+			<ul className="list-disc ml-8">
+				<li>Artificial Intelligence & Machine Learning</li>
+				<li>Data Structures & Algorithms</li>
+				<li>Database Systems</li>
+				<li>Full Stack Development</li>
+				<li>Object-Oriented Programming</li>
+				<li>Software Engineering Principles</li>
+				<li>System Architecture Design</li>
+			</ul>
+		</>
 	);
 
 	const Lincoln = (
-		<ul className="list-disc ml-8">
-			<li>
-				<strong>Undergraduate coursework:</strong>
-			</li>
-			<li>Digital Storytelling</li>
-			<li>Media Production Fundamentals</li>
-			<li>Audience Engagement</li>
-			<li>Studio Production Techniques</li>
-			<li>Design Thinking Principles</li>
-			<li>Capstone: 20-Minute TV Pilot Production</li>
-		</ul>
+		<>
+			<strong>Undergraduate coursework:</strong>
+			<ul className="list-disc ml-8">
+				<li>Digital Storytelling</li>
+				<li>Media Production Fundamentals</li>
+				<li>Audience Engagement</li>
+				<li>Studio Production Techniques</li>
+				<li>Design Thinking Principles</li>
+				<li>Capstone: 20-Minute TV Pilot Production</li>
+			</ul>
+		</>
 	);
 
 	const sectionAnimation = {
