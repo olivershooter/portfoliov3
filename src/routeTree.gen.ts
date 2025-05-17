@@ -12,40 +12,12 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as SkillsIndexImport } from './routes/skills/index'
-import { Route as ProjectsIndexImport } from './routes/projects/index'
-import { Route as ContactIndexImport } from './routes/contact/index'
-import { Route as AboutIndexImport } from './routes/about/index'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SkillsIndexRoute = SkillsIndexImport.update({
-  id: '/skills/',
-  path: '/skills/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ProjectsIndexRoute = ProjectsIndexImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ContactIndexRoute = ContactIndexImport.update({
-  id: '/contact/',
-  path: '/contact/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutIndexRoute = AboutIndexImport.update({
-  id: '/about/',
-  path: '/about/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,34 +32,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about/': {
-      id: '/about/'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/contact/': {
-      id: '/contact/'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/projects/': {
-      id: '/projects/'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/skills/': {
-      id: '/skills/'
-      path: '/skills'
-      fullPath: '/skills'
-      preLoaderRoute: typeof SkillsIndexImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -95,52 +39,32 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutIndexRoute
-  '/contact': typeof ContactIndexRoute
-  '/projects': typeof ProjectsIndexRoute
-  '/skills': typeof SkillsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutIndexRoute
-  '/contact': typeof ContactIndexRoute
-  '/projects': typeof ProjectsIndexRoute
-  '/skills': typeof SkillsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about/': typeof AboutIndexRoute
-  '/contact/': typeof ContactIndexRoute
-  '/projects/': typeof ProjectsIndexRoute
-  '/skills/': typeof SkillsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/projects' | '/skills'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/projects' | '/skills'
-  id: '__root__' | '/' | '/about/' | '/contact/' | '/projects/' | '/skills/'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutIndexRoute: typeof AboutIndexRoute
-  ContactIndexRoute: typeof ContactIndexRoute
-  ProjectsIndexRoute: typeof ProjectsIndexRoute
-  SkillsIndexRoute: typeof SkillsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutIndexRoute: AboutIndexRoute,
-  ContactIndexRoute: ContactIndexRoute,
-  ProjectsIndexRoute: ProjectsIndexRoute,
-  SkillsIndexRoute: SkillsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -153,27 +77,11 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/about/",
-        "/contact/",
-        "/projects/",
-        "/skills/"
+        "/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/about/": {
-      "filePath": "about/index.tsx"
-    },
-    "/contact/": {
-      "filePath": "contact/index.tsx"
-    },
-    "/projects/": {
-      "filePath": "projects/index.tsx"
-    },
-    "/skills/": {
-      "filePath": "skills/index.tsx"
     }
   }
 }
