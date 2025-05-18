@@ -1,16 +1,13 @@
 import { useState } from "react";
 import logo from "/OS_logo.svg";
-
 const links = [
-	{ link: "/about", label: "Features" },
-	{ link: "/pricing", label: "Pricing" },
-	{ link: "/learn", label: "Learn" },
-	{ link: "/community", label: "Community" },
+	{ link: "#about", label: "About" },
+	{ link: "#projects", label: "Projects" },
+	{ link: "#contact", label: "Contact" },
+	{ link: "#education", label: "Education" },
 ];
-
 export const Navbar = () => {
 	const [active, setActive] = useState(links[0].link);
-
 	const items = links.map((link) => (
 		<a
 			key={link.label}
@@ -20,25 +17,27 @@ export const Navbar = () => {
 			onClick={(event) => {
 				event.preventDefault();
 				setActive(link.link);
+				const targetId = link.link.substring(1); // Remove the #
+				const targetElement = document.getElementById(targetId);
+				if (targetElement) {
+					targetElement.scrollIntoView({ behavior: "smooth" });
+				}
 			}}
 		>
 			{link.label}
 		</a>
 	));
-
 	return (
-		<div className="sticky top-4 z-50 w-full flex justify-center">
-			<header className="w-9/12 sm:max-w-xl bg-gray-100 backdrop-blur-sm rounded-full shadow-slate-400 shadow-md border border-gray-200 py-1.5">
-				<div className="h-10 sm:h-14 flex sm:justify-between justify-center items-center px-2 sm:px-4">
-					<div className="hidden sm:flex items-center gap-1 p-1 rounded-full hover:bg-gray-100">
-						<img src={logo} alt="OS_logo" className="w-8 h-6 sm:w-12 sm:h-10" />
-					</div>
-
-					<div className="flex items-center gap-1 overflow-x-auto bg-gray-100/80 rounded-full justify-center sm:justify-start">
-						{items}
-					</div>
+		<header className="w-9/12 sm:max-w-xl  backdrop-blur-sm rounded-full shadow-md border border-gray-200">
+			<div className="flex sm:justify-between justify-center items-center px-2 sm:px-4">
+				<div className="hidden sm:flex items-center gap-1 p-1 rounded-full hover:bg-gray-100">
+					<img src={logo} alt="OS_logo" className="w-8 h-6 sm:w-12 sm:h-10" />
 				</div>
-			</header>
-		</div>
+
+				<div className="flex items-center gap-1 overflow-x-auto rounded-full justify-center sm:justify-start">
+					{items}
+				</div>
+			</div>
+		</header>
 	);
 };

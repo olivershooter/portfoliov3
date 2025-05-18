@@ -3,7 +3,7 @@ import TimelineItem from "./Timeline";
 
 const Education = () => {
 	const Birmingham = (
-		<>
+		<div>
 			<strong>Graduate coursework:</strong>
 			<ul className="list-disc ml-8">
 				<li>Artificial Intelligence & Machine Learning</li>
@@ -14,11 +14,11 @@ const Education = () => {
 				<li>Software Engineering Principles</li>
 				<li>System Architecture Design</li>
 			</ul>
-		</>
+		</div>
 	);
 
 	const Lincoln = (
-		<>
+		<div>
 			<strong>Undergraduate coursework:</strong>
 			<ul className="list-disc ml-8">
 				<li>Digital Storytelling</li>
@@ -28,7 +28,7 @@ const Education = () => {
 				<li>Design Thinking Principles</li>
 				<li>Capstone: 20-Minute TV Pilot Production</li>
 			</ul>
-		</>
+		</div>
 	);
 
 	const sectionAnimation = {
@@ -44,13 +44,6 @@ const Education = () => {
 		viewport: { once: true, margin: "0px 0px -100px 0px", amount: 0.3 },
 	};
 
-	const listItemAnimation = {
-		initial: { opacity: 0 },
-		whileInView: { opacity: 1 },
-		viewport: { once: true },
-		transition: { delay: 0.2 },
-	};
-
 	return (
 		<motion.div className="mt-12 mx-8 max-w-2xl" {...sectionAnimation}>
 			<motion.h2
@@ -61,27 +54,23 @@ const Education = () => {
 			</motion.h2>
 
 			<ol className="relative ml-4 mt-4 border-s border-gray-200">
-				<motion.li {...listItemAnimation}>
-					<TimelineItem
-						jobTitle="MSc Computer Science"
-						isEducation
-						company="Birmingham"
-						dateFrom="Sep 2020"
-						dateTo="Oct 2021"
-						description={Birmingham}
-					/>
-				</motion.li>
+				<TimelineItem
+					jobTitle="MSc Computer Science"
+					isEducation
+					company="Birmingham"
+					dateFrom="Sep 2020"
+					dateTo="Oct 2021"
+					description={Birmingham}
+				/>
 
-				<motion.li {...listItemAnimation}>
-					<TimelineItem
-						jobTitle="BA Media Production"
-						isEducation
-						company="University of Lincoln"
-						dateFrom="September 2014"
-						dateTo="June 2017"
-						description={Lincoln}
-					/>
-				</motion.li>
+				<TimelineItem
+					jobTitle="BA Media Production"
+					isEducation
+					company="University of Lincoln"
+					dateFrom="September 2014"
+					dateTo="June 2017"
+					description={Lincoln}
+				/>
 			</ol>
 		</motion.div>
 	);

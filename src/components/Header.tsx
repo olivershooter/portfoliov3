@@ -56,12 +56,17 @@ export const Header = () => {
 					<Button
 						text="Download CV"
 						className="text-white bg-blue-700 hover:bg-blue-800"
-						onClick={() => console.log("Download CV clicked")}
+						onClick={() => window.open("/OliverShooterCV.pdf", "_blank")}
 					/>
 					<Button
 						text="Contact Me"
 						className="text-slate-700 bg-gray-200 hover:bg-gray-300"
-						onClick={() => console.log("Contact Me clicked")}
+						onClick={() => {
+							const contactSection = document.getElementById("contact");
+							if (contactSection) {
+								contactSection.scrollIntoView({ behavior: "smooth" });
+							}
+						}}
 					/>
 				</div>
 			</div>

@@ -54,13 +54,6 @@ const Jobs = () => {
 		viewport: { once: true, margin: "0px 0px -100px 0px", amount: 0.3 },
 	};
 
-	const listItemAnimation = {
-		initial: { opacity: 0 },
-		whileInView: { opacity: 1 },
-		viewport: { once: true },
-		transition: { delay: 0.4 },
-	};
-
 	return (
 		<motion.div className="mt-12 mx-8 max-w-2xl" {...sectionAnimation}>
 			<motion.h2
@@ -71,26 +64,22 @@ const Jobs = () => {
 			</motion.h2>
 
 			<ol className="relative ml-4 mt-4 border-s border-gray-200">
-				<motion.li {...listItemAnimation}>
-					<TimelineItem
-						jobTitle="Software Engineer"
-						company="UK Government"
-						dateFrom="Oct 2022"
-						dateTo="Present"
-						description={civilService}
-						isLatest
-					/>
-				</motion.li>
+				<TimelineItem
+					jobTitle="Software Engineer"
+					company="UK Government"
+					dateFrom="Oct 2022"
+					dateTo="Present"
+					description={civilService}
+					isLatest
+				/>
 
-				<motion.li {...listItemAnimation}>
-					<TimelineItem
-						jobTitle="Native English Teacher"
-						company="English Teaching in Korea (EPIK)"
-						dateFrom="February 2018"
-						dateTo="March 2020"
-						description={EPIK}
-					/>
-				</motion.li>
+				<TimelineItem
+					jobTitle="Native English Teacher"
+					company="English Teaching in Korea (EPIK)"
+					dateFrom="February 2018"
+					dateTo="March 2020"
+					description={EPIK}
+				/>
 			</ol>
 		</motion.div>
 	);

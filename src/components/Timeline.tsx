@@ -70,7 +70,9 @@ const TimelineItem: React.FC<TimelineItemProperties> = ({
 			<time className="mb-2 ml-2 block text-sm font-normal leading-none text-gray-900">
 				{dateFrom} - {dateTo}
 			</time>
-			<p className="ml-2 text-base font-normal text-gray-700">{description}</p>
+			<div className="ml-2 text-base font-normal text-gray-700">
+				{description}
+			</div>
 		</li>
 	);
 };
