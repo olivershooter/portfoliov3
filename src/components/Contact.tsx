@@ -1,14 +1,27 @@
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { motion } from "framer-motion";
 import { useSnackbar } from "notistack";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Contact = () => {
 	const { enqueueSnackbar } = useSnackbar();
 	const formRef = useRef<HTMLFormElement>(null);
+	const captchaRef = useRef<HCaptcha>(null);
+	const [token, setToken] = useState<string | null>(null);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setIsSubmitting(true);
+
+		if (!token) {
+			enqueueSnackbar("Please complete the CAPTCHA", { variant: "error" });
+			setIsSubmitting(false);
+			return;
+		}
+
 		const formData = new FormData(e.currentTarget);
+		formData.append("h-captcha-response", token);
 
 		try {
 			const response = await fetch("https://api.web3forms.com/submit", {
@@ -17,20 +30,26 @@ const Contact = () => {
 			});
 
 			const data = await response.json();
-			console.log("data ", data);
 
 			if (data.success) {
 				enqueueSnackbar("Message sent successfully!", { variant: "success" });
 				formRef.current?.reset();
+				setToken(null);
+				captchaRef.current?.resetCaptcha();
 			} else {
-				enqueueSnackbar("Failed to send message. Please try again.", {
-					variant: "error",
-				});
+				enqueueSnackbar(
+					data.message || "Failed to send message. Please try again.",
+					{
+						variant: "error",
+					},
+				);
 			}
 		} catch (error) {
 			enqueueSnackbar("An error occurred. Please check your connection.", {
 				variant: "error",
 			});
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
@@ -53,7 +72,10 @@ const Contact = () => {
 				/>
 
 				<div>
-					<label htmlFor="name" className="block text-sm font-medium">
+					<label
+						htmlFor="name"
+						className="block text-sm font-medium text-gray-700"
+					>
 						Name
 					</label>
 					<input
@@ -61,12 +83,15 @@ const Contact = () => {
 						id="name"
 						name="name"
 						required
-						className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+						className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
 					/>
 				</div>
 
 				<div>
-					<label htmlFor="email" className="block text-sm font-medium">
+					<label
+						htmlFor="email"
+						className="block text-sm font-medium text-gray-700"
+					>
 						Email
 					</label>
 					<input
@@ -74,12 +99,15 @@ const Contact = () => {
 						id="email"
 						name="email"
 						required
-						className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+						className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
 					/>
 				</div>
 
 				<div>
-					<label htmlFor="message" className="block text-sm font-medium">
+					<label
+						htmlFor="message"
+						className="block text-sm font-medium text-gray-700"
+					>
 						Message
 					</label>
 					<textarea
@@ -87,15 +115,28 @@ const Contact = () => {
 						name="message"
 						required
 						rows={4}
-						className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+						className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
 					/>
 				</div>
 
+				<HCaptcha
+					ref={captchaRef}
+					sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+					onVerify={(token) => setToken(token)}
+					onExpire={() => setToken(null)}
+					onError={(error) => {
+						enqueueSnackbar("CAPTCHA error occurred", { variant: "error" });
+						console.error("hCaptcha Error:", error);
+					}}
+					reCaptchaCompat={false}
+				/>
+
 				<button
 					type="submit"
-					className="btn w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
+					className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+					disabled={!token || isSubmitting}
 				>
-					Send Message
+					{isSubmitting ? "Sending..." : "Send Message"}
 				</button>
 			</form>
 		</motion.div>
