@@ -151,14 +151,16 @@ const Projects = () => {
 										<Button
 											text="Github"
 											className="text-white bg-blue-700 hover:bg-blue-800"
-											onClick={() => console.log("Download CV clicked")}
+											onClick={() =>
+												window.open(project.links.github, "_blank")
+											}
 										/>
 									)}
 									{project.links.demo && (
 										<Button
 											text="Live Demo"
 											className="text-white bg-blue-700 hover:bg-blue-800"
-											onClick={() => console.log("Download CV clicked")}
+											onClick={() => window.open(project.links.demo, "_blank")}
 										/>
 									)}
 								</div>
