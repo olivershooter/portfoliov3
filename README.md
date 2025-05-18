@@ -10,6 +10,7 @@ Professional portfolio website showcasing projects, experience, and skills. Live
 - TanStack Router for client-side routing
 - Biome for linting/formatting
 - Responsive design components
+- Selfhosted with Coolify
 
 ## Development
 
