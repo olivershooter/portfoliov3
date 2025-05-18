@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import ReactLorem from "react-lorem-ipsum";
+import { Button } from "./OliversButton";
 
 interface Project {
 	id: number;
@@ -17,24 +17,32 @@ const Projects = () => {
 	const projects: Project[] = [
 		{
 			id: 1,
-			title: "E-Commerce Platform",
-			description: "A full-stack e-commerce solution with modern features",
-			tags: ["React", "Node.js", "MongoDB", "Stripe"],
-			image: "https://picsum.photos/400/250",
+			title: "Candice - Android Language Translator",
+			description:
+				"A native Android application which makes use of Google's LLM models to translate to any language. Built with additional features like flashcards to test your most translated words.",
+			tags: ["Java", "SQLite", "Android", "Material Design"],
+			image: "/candice_home.png",
 			links: {
-				github: "#",
-				demo: "#",
+				github: "https://github.com/olivershooter/candice/tree/main",
 			},
 		},
 		{
 			id: 2,
-			title: "Task Management App",
-			description: "Collaborative task management system",
-			tags: ["React", "Firebase", "Material UI", "Redux"],
-			image: "https://picsum.photos/400/250",
+			title: "Football Statistics",
+			description:
+				"A Football Statistics website built with an API to present football games stats including but not limited to, subs, goals, posession, etc.",
+			tags: [
+				"Vite/React",
+				"REST API",
+				"Tanstack",
+				"ShadCn",
+				"FAST API",
+				"Python",
+			],
+			image: "/football_home.png",
 			links: {
-				github: "#",
-				demo: "#",
+				github: "https://github.com/olivershooter/football-statistics-website",
+				demo: "https://football-statistics.olivershooter.com/",
 			},
 		},
 		{
@@ -77,7 +85,7 @@ const Projects = () => {
 			tags: ["React", "Firebase", "Material UI", "Redux"],
 			image: "https://picsum.photos/400/250",
 			links: {
-				github: "#",
+				github: "https://github.com/olivershooter/candice/tree/main",
 				demo: "#",
 			},
 		},
@@ -125,9 +133,7 @@ const Projects = () => {
 
 							<div className="p-6">
 								<h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-								<p className="text-gray-600 mb-4">
-									<ReactLorem p={1} avgSentencesPerParagraph={2} />
-								</p>
+								<p className="text-gray-600 mb-4">{project.description}</p>
 
 								<div className="flex flex-wrap gap-2 mb-4">
 									{project.tags.map((tag) => (
@@ -140,26 +146,20 @@ const Projects = () => {
 									))}
 								</div>
 
-								<div className="flex space-x-4">
+								<div className="flex space-x-4 text-center justify-center">
 									{project.links.github && (
-										<a
-											href={project.links.github}
-											className="text-blue-600 hover:text-blue-800 transition-colors"
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											GitHub
-										</a>
+										<Button
+											text="Github"
+											className="text-white bg-blue-700 hover:bg-blue-800"
+											onClick={() => console.log("Download CV clicked")}
+										/>
 									)}
 									{project.links.demo && (
-										<a
-											href={project.links.demo}
-											className="text-blue-600 hover:text-blue-800 transition-colors"
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											Live Demo
-										</a>
+										<Button
+											text="Live Demo"
+											className="text-white bg-blue-700 hover:bg-blue-800"
+											onClick={() => console.log("Download CV clicked")}
+										/>
 									)}
 								</div>
 							</div>

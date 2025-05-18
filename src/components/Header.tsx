@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import logo from "/OS_logo.svg";
 import downarrow from "/down-arrow.svg";
+import { Button } from "./OliversButton";
 
 export const Header = () => {
 	const ScrollIndicator = () => (
@@ -19,26 +20,6 @@ export const Header = () => {
 				</p>
 			</div>
 		</div>
-	);
-
-	const Button = ({
-		text,
-		className,
-		onClick,
-	}: {
-		text: string;
-		className: string;
-		onClick: () => void;
-	}) => (
-		<motion.button
-			className={`font-extrabold rounded-full text-sm px-5 py-3 text-center ${className}`}
-			whileHover={{ scale: 1.1 }}
-			whileTap={{ scale: 0.9 }}
-			transition={{ duration: 0.2 }}
-			onClick={onClick}
-		>
-			{text}
-		</motion.button>
 	);
 
 	return (
