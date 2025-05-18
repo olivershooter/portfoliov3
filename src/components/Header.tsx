@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import logo from "/OS_logo.svg";
 import downarrow from "/down-arrow.svg";
