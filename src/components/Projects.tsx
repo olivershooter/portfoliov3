@@ -45,51 +45,6 @@ const Projects = () => {
 				demo: "https://football-statistics.olivershooter.com/",
 			},
 		},
-		{
-			id: 3,
-			title: "Todo  App",
-			description: "Collaborative task management system",
-			tags: ["React", "Firebase", "Material UI", "Redux"],
-			image: "https://picsum.photos/400/250",
-			links: {
-				github: "#",
-				demo: "#",
-			},
-		},
-		{
-			id: 4,
-			title: "E-Commerce Platform",
-			description: "A full-stack e-commerce solution with modern features",
-			tags: ["React", "Node.js", "MongoDB", "Stripe"],
-			image: "https://picsum.photos/400/250",
-			links: {
-				github: "#",
-				demo: "#",
-			},
-		},
-		{
-			id: 5,
-			title: "Task Management App",
-			description: "Collaborative task management system",
-			tags: ["React", "Firebase", "Material UI", "Redux"],
-			image: "https://picsum.photos/400/250",
-			links: {
-				github: "#",
-				demo: "#",
-			},
-		},
-		{
-			id: 6,
-			title: "Todo  App",
-			description: "Collaborative task management system",
-			tags: ["React", "Firebase", "Material UI", "Redux"],
-			image: "https://picsum.photos/400/250",
-			links: {
-				github: "https://github.com/olivershooter/candice/tree/main",
-				demo: "#",
-			},
-		},
-		// Add more projects as needed
 	];
 
 	const cardVariants = {
