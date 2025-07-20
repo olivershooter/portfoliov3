@@ -1,15 +1,22 @@
+import { useCallback } from "react";
 import { TypeAnimation } from "react-type-animation";
 import logo from "/OS_logo.svg";
 import downarrow from "/down-arrow.svg";
 import { Button } from "./OliversButton";
-import { useCallback } from "react";
 
 const TECH_STACK = [
-	"TypeScript", "JavaScript", "Java", "Python", 
-	"React", "Next.js", "REST APIs", "Spring Boot"
+	"TypeScript",
+	"JavaScript",
+	"Java",
+	"Python",
+	"React",
+	"Next.js",
+	"REST APIs",
+	"Spring Boot",
 ];
 
-const BASE_TEXT = "Hi there! My name is Oliver and I'm a software engineer specializing in full-stack development. I've worked with ";
+const BASE_TEXT =
+	"Hi there! My name is Oliver and I'm a software engineer specializing in full-stack development. I've worked with ";
 
 export const Header = () => {
 	const scrollToContact = useCallback(() => {
@@ -18,9 +25,9 @@ export const Header = () => {
 	}, []);
 
 	// Generate animation sequence more efficiently
-	const animationSequence = TECH_STACK.flatMap(tech => [
+	const animationSequence = TECH_STACK.flatMap((tech) => [
 		`${BASE_TEXT}${tech}`,
-		1000
+		1000,
 	]).concat([`${BASE_TEXT}many technologies!`, 8000]);
 
 	const ScrollIndicator = () => (
@@ -41,18 +48,29 @@ export const Header = () => {
 	return (
 		<>
 			<div className="h-full w-full flex flex-col items-center justify-center gap-12 z-10">
-				<img 
-					src={logo} 
-					alt="Oliver Shooter Logo" 
+				<img
+					src={logo}
+					alt="Oliver Shooter Logo"
 					className="w-48 h-48 sm:w-52 sm:h-52"
 				/>
-				<TypeAnimation
-					sequence={animationSequence}
-					wrapper="span"
-					speed={35}
-					className="max-w-4xl text-center font-bold text-lg sm:text-xl px-4"
-					repeat={Number.POSITIVE_INFINITY}
-				/>
+				<div className="max-w-4xl text-center font-bold text-lg sm:text-xl px-4 relative">
+					{/* Hidden element to reserve space for the longest text */}
+					<span
+						className="invisible absolute inset-0 whitespace-pre-wrap"
+						aria-hidden="true"
+					>
+						{BASE_TEXT}specializing in full-stack development and many
+						technologies!
+					</span>
+					{/* Actual animation */}
+					<TypeAnimation
+						sequence={animationSequence}
+						wrapper="span"
+						speed={35}
+						className="block"
+						repeat={Number.POSITIVE_INFINITY}
+					/>
+				</div>
 				<div className="flex flex-col sm:flex-row gap-4">
 					<Button
 						text="Request CV"

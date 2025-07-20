@@ -19,7 +19,7 @@ export const Button = memo<ButtonProps>(({
 	<motion.button
 		type={type}
 		disabled={disabled}
-		className={`font-bold rounded-full text-sm px-5 py-3 text-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+		className={`font-bold rounded-full text-sm px-5 py-3 text-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer ${className}`}
 		whileHover={disabled ? {} : { scale: 1.05 }}
 		whileTap={disabled ? {} : { scale: 0.95 }}
 		transition={{ duration: 0.15, ease: "easeInOut" }}

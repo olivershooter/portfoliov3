@@ -19,7 +19,7 @@ const PROJECTS: Project[] = [
 		id: 1,
 		title: "Candice - Android Language Translator",
 		description:
-			"A native Android application using Google's LLM models to translate to any language. Features flashcards to test your most translated words.",
+			"A native Android application using Google's LLM models to translate to any language. Features flashcards to test your most translated words. Made as a part of my dissertation project, sorry for any student-y mistakes!",
 		tags: ["Java", "SQLite", "Android", "Material Design"],
 		image: "/candice_home.png",
 		links: {
@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
 		id: 2,
 		title: "Football Statistics",
 		description:
-			"A Football Statistics website with API to present game stats including subs, goals, possession, and more.",
+			"A modern football statistics platform built with cutting-edge web technologies. Designed to showcase sports analytics capabilities in a portfolio context. Check out match results from the latest few seasons.",
 		tags: [
 			"Vite/React",
 			"REST API",
@@ -43,6 +43,26 @@ const PROJECTS: Project[] = [
 		links: {
 			github: "https://github.com/olivershooter/football-statistics-website",
 			demo: "https://football-statistics.olivershooter.com/",
+		},
+	},
+	{
+		id: 3,
+		title: "Todo",
+		description:
+			`This Todo App is a portfolio project demonstrating full-stack development skills with React, TypeScript, and Django. It implements CRUD (Create, Read, Update, Delete) operations for managing notes. The app features user authentication, responsive design, and a clean UI. It's built with modern web development practices and showcases efficient state management and API integration.`,
+		tags: [
+			"Vite/React",
+			"REST API",
+			"Tanstack",
+			"TailwindCSS",
+			"Django",
+			"Python",
+			"JWT"
+		],
+		image: "/todo.png",
+		links: {
+			github: "https://github.com/olivershooter/todo",
+			demo: "https://todo.olivershooter.com/",
 		},
 	},
 ];
